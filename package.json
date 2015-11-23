@@ -4,7 +4,8 @@
   "description": "Command-line client for the Kong admin (http://getkong.org)",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover --print detail _mocha -- -R spec test"
+    "test": "istanbul cover --print detail _mocha -- -R spec test",
+    "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   "homepage": "https://github.com/Floby/konga-cli#readme",
   "devDependencies": {
     "chai": "^3.4.1",
+    "coveralls": "^2.11.4",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.4",
     "nock": "^3.2.0",
