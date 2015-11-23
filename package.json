@@ -4,7 +4,7 @@
   "description": "Command-line client for the Kong admin (http://getkong.org)",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover --print detail _mocha -- -R spec 'test/**'"
+    "test": "istanbul cover --print detail _mocha -- -R spec test"
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,14 @@
   "bugs": {
     "url": "https://github.com/Floby/konga-cli/issues"
   },
-  "homepage": "https://github.com/Floby/konga-cli#readme"
+  "homepage": "https://github.com/Floby/konga-cli#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.4",
+    "nock": "^3.2.0"
+  },
+  "dependencies": {
+    "supertest": "^1.1.0"
+  }
 }
