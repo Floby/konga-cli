@@ -54,6 +54,20 @@ describe('plugins', function () {
       });
     });
   })
+
+  describe('.readConfig(api, plugin)', function () {
+    beforeEach(() => nock().get('/apis/my-api/plugins').reply(200, {data: [{name: 'oauth2', id:'some-id'}]}))
+    it('reads the .config of a plugin on an API', function (done) {
+      var read = nock().get('/apis/my-api/plugins/some-id').reply(200, {config: {my: 'config'}})
+      plugins.readConfig('my-api', 'oauth2', function (err, config) {
+        if (err) return done(err);
+        expect(config).to.deep.equal({my: 'config'})
+        read.done();
+        done()
+      })
+    })
+  });
+
   afterEach(function () {
     require('nock').cleanAll();
   })
