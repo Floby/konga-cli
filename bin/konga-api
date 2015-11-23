@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+// vi: set ft=javascript
+
+var program = require('commander');
+var apis = require('../commands/apis');
+var fail = require('../lib/fail')
+var display = require('../lib/display');
+
+program
+  .command('list')
+  .action(function (truc) {
+    apis.list(function (err, apis) {
+      if (err) fail(err);
+      apis.forEach(api => console.log(display.api(api)))
+    })
+  })
+
+program.parse(process.argv)
+

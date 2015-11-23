@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/Floby/konga-cli.git"
   },
+  "bin": {
+    "konga": "bin/konga"
+  },
   "keywords": [
     "kong",
     "getkong",
@@ -33,9 +36,12 @@
     "chai": "^3.4.1",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.4",
-    "nock": "^3.2.0"
+    "nock": "^3.2.0",
+    "sinon": "^1.17.2"
   },
   "dependencies": {
+    "commander": "^2.9.0",
+    "printf": "^0.2.3",
     "supertest": "^1.1.0"
   }
 }

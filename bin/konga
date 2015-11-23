@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+// vi: set ft=javascript
+
+var program = require('commander');
+var apis = require('../commands/apis');
+
+program
+  .command('api', 'API operations')
+
+program.parse(process.argv)
