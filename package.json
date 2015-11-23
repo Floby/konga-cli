@@ -1,0 +1,28 @@
+{
+  "name": "konga-cli",
+  "version": "1.0.0",
+  "description": "Command-line client for the Kong admin (http://getkong.org)",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover --print detail _mocha -- -R spec 'test/**'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Floby/konga-cli.git"
+  },
+  "keywords": [
+    "kong",
+    "getkong",
+    "api",
+    "admin",
+    "cli",
+    "OAuth2",
+    "ansible"
+  ],
+  "author": "Florent Jaby <florent.jaby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Floby/konga-cli/issues"
+  },
+  "homepage": "https://github.com/Floby/konga-cli#readme"
+}
