@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var plugins = require('../commands/plugins');
+var fail = require('../lib/fail');
+
+program
+  .command('list')
+  .option('--on <api-name>', 'the API whose plugin to list')
+  .action(function (options) {
+    if (typeof options.on !== 'string') {
+      fail(Error('listing all plugins is not supported yet'))
+    }
+    plugins.list(options.on, function (err, plugins) {
+      if (err) fail(err);
+      console.log(plugins)
+    })
+  })
+
+program.parse(process.argv)

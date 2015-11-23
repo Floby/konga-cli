@@ -6,5 +6,6 @@ var apis = require('../commands/apis');
 
 program
   .command('api', 'API operations')
+  .command('plugin', 'Plugin operations')
 
 program.parse(process.argv)
