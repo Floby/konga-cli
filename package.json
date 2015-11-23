@@ -17,7 +17,11 @@
     "admin",
     "cli",
     "OAuth2",
-    "ansible"
+    "ansible",
+    "command-line",
+    "command",
+    "line",
+    "cli"
   ],
   "author": "Florent Jaby <florent.jaby@gmail.com>",
   "license": "MIT",
