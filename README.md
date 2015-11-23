@@ -31,7 +31,13 @@ List all configured APIs
 
 ##### Set
 
-    $ konga api set <api-name> <api-upstream> [--request-host <host>] [--request-path <path>] [--preserve-host] [--strip-request-path]
+```
+$ konga api set <api-name> <api-upstream> \
+  [--request-host <host>] \
+  [--request-path <path>] \
+  [--preserve-host] \
+  [--strip-request-path]
+```
 
 Ensure the api with that given name is either created or updated with the given settings
 
