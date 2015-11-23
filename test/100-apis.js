@@ -37,7 +37,7 @@ describe('apis', function () {
         }
         var creation = nock().put('/apis', { 
           name: 'my-api', upstream_url: 'http://some-upstream', request_host: 'my.host'
-        }).reply(201, {data: newApi});
+        }).reply(201, newApi);
 
         apis.set('my-api', 'http://some-upstream', {request_host: 'my.host'}, function (err, api) {
           if (err) return done(err);
@@ -56,7 +56,7 @@ describe('apis', function () {
       it('updates the existing api', function (done) {
         var creation = nock().put('/apis', { 
           id: 'my-api-id', name: 'my-api', upstream_url: 'http://some-upstream', request_host: 'my.host'
-        }).reply(200, {data: {}});
+        }).reply(200, {});
 
         apis.set('my-api', 'http://some-upstream', {request_host: 'my.host'}, function (err, api) {
           if (err) return done(err);
@@ -66,6 +66,26 @@ describe('apis', function () {
       });
     });
   });
+
+  describe('.remove(name)', function () {
+    describe('when it exists', function () {
+      it('deletes it', function (done) {
+        var deletion = nock().delete('/apis/my-api').reply(204);
+        apis.remove('my-api', function (err) {
+          if (err) return done(err)
+          deletion.done();
+          done();
+        })
+      })
+    })
+
+    describe('when it does not exist', function () {
+      it('does not break', function (done) {
+        nock().delete('/apis/my-api').reply(404)
+        apis.remove('my-api', done)
+      })
+    })
+  })
 
   afterEach(function () {
     require('nock').cleanAll();
