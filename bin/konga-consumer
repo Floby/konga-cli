@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var consumers = require('../commands/consumers');
+var fail = require('../lib/fail');
+
+program
+  .command('set <username>')
+  .action(function (username) {
+    consumers.set(username, function (err, consumer) {
+      if (err) fail(err);
+      console.log(consumer)
+    })
+  })
+program.parse(process.argv)
+
+
