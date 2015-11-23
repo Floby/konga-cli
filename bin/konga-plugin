@@ -3,6 +3,8 @@
 var program = require('commander');
 var plugins = require('../commands/plugins');
 var fail = require('../lib/fail');
+var configurator = require('../lib/configurator');
+
 
 program
   .command('list')
@@ -17,4 +19,21 @@ program
     })
   })
 
+program
+  .command('set <plugin-name> [fields...]')
+  .option('--on <api-name>', 'the API on which to configure the plugin')
+  .action(function (plugin, fields, options) {
+    if (typeof options.on !== 'string') {
+      fail(Error("you MUST specify a target API with the --on <api-name> option"))
+    }
+    var config = configurator(fields);
+    //console.log(fields);
+    //console.log(config);
+    //return;
+    plugins.set(options.on, plugin, configurator(fields), function (err, result) {
+      if (err) fail(err);
+      console.log(result);
+    })
+  })
 program.parse(process.argv)
+

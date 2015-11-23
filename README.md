@@ -61,7 +61,12 @@ Ensure the api of that name does not exist
     $ konga plugin set <plugin-name> --on <api-name> [field=value ...]
 
 Ensure the plugin is enabled with the given settings on a given API.
-The `field=value` pair are the settings for the given plugin
+The `field=value` pair are the settings for the given plugin.
+Booleans can be specified as just `field`
+
+Example:
+
+    $ konga plugin set oauth2 --on my-api enable_password_grant scopes=identity,messages
 
 ##### Read config
 
@@ -72,7 +77,7 @@ Read the config for a given configured plugin on a given API, optionally select 
 For example:
 
 ```
-$ konga plugin read-config <oauth> --on my-api provision_key,scopes
+$ konga plugin read-config <oauth> --on my-api provision_key scopes
 a006d52004f7e7f028e0e62486f217ced1a6a0d5
 identity,messages
 ```
