@@ -1,4 +1,5 @@
 var client = require('../client');
+var codes = require('../lib/codes')
 
 exports.list = function (callback) {
   client
@@ -15,7 +16,7 @@ exports.set = function (name, upstream_url, options, callback) {
   var id;
   client
     .get('/apis/' + name)
-    .expect(code(200, 404))
+    .expect(codes(200, 404))
     .end(function (err, res) {
       if (err) return callback(err);
       id = res.body.id;
@@ -32,15 +33,7 @@ exports.set = function (name, upstream_url, options, callback) {
 exports.remove = function (name, callback) {
   client
     .delete('/apis/' + name)
-    .expect(code(204, 404))
+    .expect(codes(204, 404))
     .end(callback)
 }
 
-function code (codes) {
-  codes = [].slice.call(arguments);
-  return function (res) {
-    if (codes.indexOf(res.status) === -1) {
-      throw Error('unexpected status code ' + res.status);
-    }
-  }
-}
