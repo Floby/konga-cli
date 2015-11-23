@@ -39,6 +39,13 @@ describe('consumers', function () {
     });
   })
 
+  describe('.plugin(username, plugin, config)', function () {
+    describe('when there already is a configuration', function () {
+      it('creates the configuration', function () {
+      });
+    })
+  })
+
   afterEach(function () {
     require('nock').cleanAll();
   })
