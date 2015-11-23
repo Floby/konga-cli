@@ -77,7 +77,7 @@ Read the config for a given configured plugin on a given API, optionally select 
 For example:
 
 ```
-$ konga plugin read-config <oauth> --on my-api provision_key scopes
+$ konga plugin read-config <oauth> --on my-api provision_key scopes --raw
 a006d52004f7e7f028e0e62486f217ced1a6a0d5
 identity,messages
 ```
