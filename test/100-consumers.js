@@ -57,7 +57,7 @@ describe('consumers', function () {
       it('creates the configuration', function (done) {
         var update = nock().put('/consumers/me/oauth2', {
           id: 'plugin-id', name: 'my-app', some: 'data'
-        }).reply(201, {name: 'my-app', some: 'data', id: 'plugin-id'})
+        }).reply(200, {name: 'my-app', some: 'data', id: 'plugin-id'})
 
         consumers.plugin('me', 'oauth2', {name: 'my-app', some: 'data'}, function (err, plugin) {
           if (err) return done(err);

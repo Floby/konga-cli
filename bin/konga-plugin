@@ -36,8 +36,8 @@ program
   .action(function (plugin, fields, options) {
     apiRequired(options);
     plugins.readConfig(options.on, plugin, function (err, config) {
-      fields = fields.length ? fields : Object.keys(config);
       if (err) fail(err);
+      fields = fields.length ? fields : Object.keys(config);
       console.log(display.config(config, fields, options.raw));
     })
   })

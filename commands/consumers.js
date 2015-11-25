@@ -35,7 +35,7 @@ exports.plugin = function (username, plugin, config, callback) {
     client
       .put(pluginPath.param({username, plugin}))
       .send(Object.assign({id: id}, config))
-      .expect(201)
+      .expect(codes(200, 201))
       .end(function (err, res) {
         if (err) return callback(err);
         callback(null, res.body);
