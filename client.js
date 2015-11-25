@@ -2,7 +2,6 @@ var supertest = require('supertest');
 var config = require('./config');
 
 var Test = require('supertest/lib/test');
-console.log(Test.prototype.assert.toString());
 
 originalAssert = Test.prototype.assert;
 Test.prototype.assert = function kongaAssert(resError, res, fn){

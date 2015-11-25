@@ -10,7 +10,7 @@ var pluginPath = pluginsPath.segment('/:id');
 exports.list = function (api, callback) {
   client
     .get(pluginsPath.param({api}))
-    .expect(200)
+    .expect(codes(200))
     .end(function (err, res) {
       if (err) return callback(err);
       callback(null, res.body.data)
@@ -37,7 +37,7 @@ exports.readConfig = function (api, name, callback) {
     if (err) return callback(err);
     client
       .get(pluginPath.param({api, id}))
-      .expect(200)
+      .expect(codes(200))
       .end(function (err, res) {
         if (err) return callback(err);
         callback(null, res.body.config);

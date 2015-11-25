@@ -9,7 +9,7 @@ exports.list = function (callback) {
   client
     .get(apisPath)
     .set('Accept', 'application/json')
-    .expect(200)
+    .expect(codes(200))
     .end(function (err, res) {
       if (err) return callback(err);
       callback(null, res.body.data)
