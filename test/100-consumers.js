@@ -40,9 +40,42 @@ describe('consumers', function () {
   })
 
   describe('.plugin(username, plugin, config)', function () {
-    describe('when there already is a configuration', function () {
-      it('creates the configuration', function () {
+    describe('when there is no configuration', function () {
+      beforeEach(() => nock().get('/consumers/me/oauth2').reply(200, {data:[]}))
+      it('creates the configuration', function (done) {
+        var creation = nock().put('/consumers/me/oauth2').reply(201, {name: 'my-app', some: 'default', id: 'plugin-id'})
+        consumers.plugin('me', 'oauth2', {name: 'my-app'}, function (err, plugin) {
+          if (err) return done(err);
+          expect(plugin).to.deep.equal({name: 'my-app', some: 'default', id: 'plugin-id'})
+          creation.done();
+          done()
+        })
       });
+    })
+    describe('when there already is a configuration', function () {
+      beforeEach(() => nock().get('/consumers/me/oauth2').reply(200, {data:[{name: 'my-app', some: 'default', id: 'plugin-id'}]}))
+      it('creates the configuration', function (done) {
+        var update = nock().put('/consumers/me/oauth2', {
+          id: 'plugin-id', name: 'my-app', some: 'data'
+        }).reply(201, {name: 'my-app', some: 'data', id: 'plugin-id'})
+
+        consumers.plugin('me', 'oauth2', {name: 'my-app', some: 'data'}, function (err, plugin) {
+          if (err) return done(err);
+          expect(plugin).to.deep.equal({name: 'my-app', some: 'data', id: 'plugin-id'})
+          update.done();
+          done()
+        })
+      });
+    })
+
+    describe('when no name is specified', function () {
+      it('calls back with an error', function (done) {
+        consumers.plugin('me', 'my-app', {}, function (err) {
+          expect(err).to.be.an.instanceof(Error)
+          expect(err).to.match(/konga requires a config.name/i)
+          done()
+        })
+      })
     })
   })
 

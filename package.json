@@ -44,6 +44,7 @@
   "dependencies": {
     "commander": "^2.9.0",
     "printf": "^0.2.3",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "url-assembler": "^1.2.4"
   }
 }
