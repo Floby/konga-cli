@@ -1,1 +1,2 @@
-exports.kong_url = 'http://localhost:9001'
+
+exports.kong_url = process.env.KONG_URL || 'http://localhost:8001'
