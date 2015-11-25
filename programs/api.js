@@ -17,7 +17,7 @@ program
   .option('--request-host <host>', 'The public DNS address that points to your API')
   .option('--request-path <path>', 'The public path that points to your API')
   .option('--strip-request-path', 'Strip the request_path value before proxying the request')
-  .option('--preserve-host>', 'Preserves the original Host header sent by the client')
+  .option('--preserve-host', 'Preserves the original Host header sent by the client')
   .action(function (name, upstream_url, options) {
     apis.set(name, upstream_url, {
       request_host: options.requestHost,
